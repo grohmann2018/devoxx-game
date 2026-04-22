@@ -3,10 +3,6 @@ import { Scene } from 'phaser';
 
 export class GameOver extends Scene
 {
-    camera: Phaser.Cameras.Scene2D.Camera;
-    background: Phaser.GameObjects.Image;
-    gameOverText : Phaser.GameObjects.Text;
-
     constructor ()
     {
         super('GameOver');
@@ -14,23 +10,33 @@ export class GameOver extends Scene
 
     create ()
     {
-        this.camera = this.cameras.main
-        this.camera.setBackgroundColor(0xff0000);
+        const { width, height } = this.scale;
 
-        this.background = this.add.image(512, 384, 'background');
-        this.background.setAlpha(0.5);
+        this.add.rectangle(width / 2, height / 2, width, height, 0x1a0000);
 
-        this.gameOverText = this.add.text(512, 384, 'Game Over', {
-            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'center'
-        }).setOrigin(0.5).setDepth(100);
-        
+        this.add.text(width / 2, height / 2 - 60, 'GAME OVER', {
+            fontSize: '64px',
+            fontFamily: 'Arial Black',
+            color: '#ff4444',
+            stroke: '#000000',
+            strokeThickness: 8
+        }).setOrigin(0.5);
+
+        this.add.text(width / 2, height / 2 + 30, 'Press R to try again', {
+            fontSize: '24px',
+            fontFamily: 'Arial',
+            color: '#aaaaaa'
+        }).setOrigin(0.5);
+
+        this.input.keyboard!.once('keydown-R', () => {
+            this.scene.start('Game');
+        });
+
         EventBus.emit('current-scene-ready', this);
     }
 
     changeScene ()
     {
-        this.scene.start('MainMenu');
+        this.scene.start('Game');
     }
 }
