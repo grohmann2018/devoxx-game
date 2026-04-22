@@ -292,10 +292,10 @@ export class Game extends Scene
     /** Decorative conference slide panels in the background */
     private buildSlides ()
     {
-        const slides: Array<[number, number, string, string]> = [
-            [3 * TILE_SIZE,  26 * TILE_SIZE, 'Java 21\nVirtual Threads', '#1a3a5c'],
-            [22 * TILE_SIZE, 18 * TILE_SIZE, 'Cloud Native\nKubernetes', '#1a3a2c'],
-            [42 * TILE_SIZE, 18 * TILE_SIZE, 'AI / ML\nwith Java', '#2c1a3a'],
+        const slides: Array<[number, number, string, number]> = [
+            [3 * TILE_SIZE,  26 * TILE_SIZE, 'Java 21\nVirtual Threads', 0x1a3a5c],
+            [22 * TILE_SIZE, 18 * TILE_SIZE, 'Cloud Native\nKubernetes', 0x1a3a2c],
+            [42 * TILE_SIZE, 18 * TILE_SIZE, 'AI / ML\nwith Java', 0x2c1a3a],
         ];
 
         for (const [x, y, label, bg] of slides)
@@ -303,7 +303,7 @@ export class Game extends Scene
             const w = 7 * TILE_SIZE;
             const h = 5 * TILE_SIZE;
             const panel = this.add.graphics();
-            panel.fillStyle(Phaser.Display.Color.HexStringToColor(bg).color, 0.85);
+            panel.fillStyle(bg, 0.85);
             panel.fillRect(x, y, w, h);
             panel.lineStyle(2, 0xF4831F, 0.6);
             panel.strokeRect(x, y, w, h);
