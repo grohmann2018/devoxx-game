@@ -20,10 +20,11 @@ const LEVEL_TILES: Array<[number, number, number]> = [
 
     // Mid-height stages
     [28, 20, 26],   // Exhibition Stage A
+    [28, 37, 44],   // Right Dev Stage  (7 rows above Bridge 2, links to Dev Track C)
 
     // High stages
     [21, 10, 16],   // Speaker Track B
-    [21, 40, 46],   // Dev Track C
+    [21, 42, 48],   // Dev Track C      (shifted right 2 cols for clean jump to Keynote)
 
     // Keynote Stage — the goal (far right, highest)
     [14, 50, 56],
@@ -48,7 +49,7 @@ const COFFEE_POSITIONS: Array<[number, number]> = [
 // ── Bug patrol data: [startCol, row, patrolHalfWidth] ────────────────────────
 const BUG_PATROLS: Array<[number, number, number]> = [
     [25, 42, 5],   // Exhibition floor centre
-    [22, 27, 3],   // Exhibition Stage A
+    [22, 28, 3],   // Exhibition Stage A  (was row 27 — one tile too high)
     [48, 42, 4],   // Keynote floor
 ];
 
