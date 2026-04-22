@@ -61,12 +61,13 @@ export class Game extends Scene
 
         // Player — spawn above the left ground section
         this.player = this.physics.add.sprite(50, WORLD_HEIGHT - 120, 'player', 0);
-        (this.player.body as Phaser.Physics.Arcade.Body).setMaxVelocityY(800);
+        (this.player.body as Phaser.Physics.Arcade.Body).setMaxVelocityY(900);
 
         this.physics.add.collider(this.player, this.platforms);
 
-        // Camera follows the player within the world
+        // Camera follows the player within the world; zoom in to ~32 tiles wide
         this.cameras.main.setBounds(0, 0, WORLD_WIDTH, WORLD_HEIGHT);
+        this.cameras.main.setZoom(1.78);
         this.cameras.main.startFollow(this.player, true, 0.1, 0.1);
 
         // HUD text (fixed to camera)
@@ -88,12 +89,12 @@ export class Game extends Scene
 
         if (this.cursors.left.isDown)
         {
-            body.setVelocityX(-200);
+            body.setVelocityX(-160);
             this.player.setFlipX(true);
         }
         else if (this.cursors.right.isDown)
         {
-            body.setVelocityX(200);
+            body.setVelocityX(160);
             this.player.setFlipX(false);
         }
         else
@@ -103,7 +104,7 @@ export class Game extends Scene
 
         if ((this.cursors.up.isDown || this.cursors.space.isDown) && body.blocked.down)
         {
-            body.setVelocityY(-550);
+            body.setVelocityY(-480);
         }
 
         // Fell into a pit → Game Over
